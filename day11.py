@@ -1,17 +1,8 @@
 from typing import List, Dict
 import collections
+import sys
+import common
 from tqdm import tqdm
-
-
-def parse_grid_from_file() -> List[List[str]]:
-    with open('day11/test.txt') as f:
-        return [[c for c in line.strip()] for line in f.readlines()]
-
-
-def print_grid(grid: List[List[str]]):
-    for line in grid:
-        print(''.join(line))
-    print('')
 
 
 def get_sum_of_row(grid: List[List[str]], row: int) -> int:
@@ -73,7 +64,7 @@ def find_positions_of_hashes(grid: List[List[str]]) -> List[Dict[int, int]]:
     return [(y, x) for y in range(len(grid)) for x in range(len(grid[y])) if grid[y][x] == '#']
 
 
-grid = parse_grid_from_file()
+grid = common.parse_grid_from_file('day11/test.txt')
 sum_of_rows_and_cols = get_sum_of_rows_and_columns(grid)
 new_rows = sum([1 for row in sum_of_rows_and_cols["rows"] if row == 0])
 new_cols = sum([1 for row in sum_of_rows_and_cols["columns"] if row == 0])
